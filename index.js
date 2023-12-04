@@ -25,7 +25,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     // Get the database and collection on which to run the operation
     const userCollection = client.db("bookData2").collection("users");
@@ -78,11 +78,11 @@ async function run() {
     });
 
     //
-    app.get("/users/admin/:email", verifyToken, async (req, res) => {
+    app.get("/users/admin/:email",  async (req, res) => {
       const email = req.params.email;
-      if (email !== req.decoded.email) {
-        return res.status(403).send({ message: "forbidden access" });
-      }
+      // if (email !== req.decoded.email) {
+      //   return res.status(403).send({ message: "forbidden access" });
+      // }
 
       const query = { email: email };
       const user = await userCollection.findOne(query);
